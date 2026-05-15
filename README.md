@@ -10,7 +10,7 @@ DNS-Adapter first maps query images to anonymous candidate logits through generi
 
 ![DNS-Adapter overview](figures/dns_adapter_overview.jpg)
 
-[Case study](figures/dns_adapter_case_study.jpg) | [Symbolic reasoning](figures/dns_adapter_symbolic_reasoning.jpg) | [Trie rectification](figures/dns_adapter_trie.jpg)
+![Case study](figures/dns_adapter_case_study.jpg) | ![Symbolic reasoning](figures/dns_adapter_symbolic_reasoning.jpg) | ![Trie rectification](figures/dns_adapter_trie.jpg)
 
 ## Repository
 
