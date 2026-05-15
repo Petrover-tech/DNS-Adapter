@@ -1,4 +1,4 @@
-# DNS-Adapter
+# DNS-Adapter: Dynamic Neuro-Symbolic Reasoning with External Knowledge for Vocabulary-Free Few-shot Fine-Grained Recognition
 
 DNS-Adapter is a training-free dynamic neuro-symbolic framework for vocabulary-free few-shot fine-grained recognition. It keeps the original visual-only vocabulary-free projection pipeline, then selectively invokes external-knowledge reasoning for uncertain samples.
 
