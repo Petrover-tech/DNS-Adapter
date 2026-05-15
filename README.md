@@ -8,9 +8,33 @@ DNS-Adapter is a training-free dynamic neuro-symbolic framework for vocabulary-f
 
 DNS-Adapter first maps query images to anonymous candidate logits through generic ImageNet/WordNet anchors and a closed-form support-set mapping. For high-entropy predictions, it builds a local knowledge context, prompts an LLM to compare only the top visual candidates, applies trie-style candidate rectification, and fuses the symbolic residual back into the visual logits.
 
-![DNS-Adapter overview](figures/dns_adapter_overview.jpg)
+<p align="center">
+  <img src="figures/dns_adapter_overview.jpg" alt="DNS-Adapter overview" width="720">
+</p>
 
-![Case study](figures/dns_adapter_case_study.jpg) | ![Symbolic reasoning](figures/dns_adapter_symbolic_reasoning.jpg) | ![Trie rectification](figures/dns_adapter_trie.jpg)
+<p align="center">
+  <b>Overview of DNS-Adapter</b>
+</p>
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="figures/dns_adapter_case_study.jpg" alt="Case study" width="100%">
+      <br>
+      <b>Case study</b>
+    </td>
+    <td align="center" width="33%">
+      <img src="figures/dns_adapter_symbolic_reasoning.jpg" alt="Symbolic reasoning" width="100%">
+      <br>
+      <b>Symbolic reasoning</b>
+    </td>
+    <td align="center" width="33%">
+      <img src="figures/dns_adapter_trie.jpg" alt="Trie rectification" width="100%">
+      <br>
+      <b>Trie rectification</b>
+    </td>
+  </tr>
+</table>
 
 ## Repository
 
@@ -32,33 +56,3 @@ conda create -y --name dns_adapter python=3.10
 conda activate dns_adapter
 pip install -r requirements.txt
 pip install torch torchvision torchaudio
-```
-
-Install datasets following [DATASETS.md](DATASETS.md).
-
-## Run
-
-```bash
-python main.py --dataset dtd --root_path /path/to/datasets --backbone vit_b16 --n_shots 16 --run_mode dns_adapter
-```
-
-Optional LLM scoring uses `DNS_ADAPTER_API_KEY` or `OPENAI_API_KEY`:
-
-```bash
-DNS_ADAPTER_API_KEY=... python main.py --dataset stanford_cars --root_path /path/to/datasets --run_mode dns_adapter
-```
-
-Batch scripts are provided in `scripts/`:
-
-```bash
-bash scripts/DNS_Adapter_imagenet_text.sh --root /path/to/datasets --backbone vit_b16 --n_shots 16
-bash scripts/DNS_Adapter_wordnet.sh --root /path/to/datasets --backbone vit_b16 --n_shots 16
-```
-
-## Citation
-
-Citation information will be added after the DNS-Adapter paper is published.
-
-## License
-
-This repository keeps the original AGPL-3.0 license.
