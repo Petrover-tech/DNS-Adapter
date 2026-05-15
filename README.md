@@ -23,7 +23,7 @@ DNS-Adapter first maps query images to anonymous candidate logits through generi
 - `dns_adapter/unreleased.py`: publication-pending placeholders for the final LLM scoring, calibration, trie-constrained decoding, and retrieval policies.
 - `PROJECT_TREE.md`: concise project tree.
 
-Key logic to be fully opened after publication: `dns_adapter/symbolic_reasoning.py`, `dns_adapter/knowledge_graph.py`, `dns_adapter/prompts.py`, `dns_adapter/trie.py`, and `dns_adapter/unreleased.py`.
+Key logic to be fully opened after publication: The whole `dns_adapter` file and `scripts file`.
 
 ## Setup
 
