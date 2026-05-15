@@ -8,9 +8,9 @@ DNS-Adapter is a training-free dynamic neuro-symbolic framework for vocabulary-f
 
 DNS-Adapter first maps query images to anonymous candidate logits through generic ImageNet/WordNet anchors and a closed-form support-set mapping. For high-entropy predictions, it builds a local knowledge context, prompts an LLM to compare only the top visual candidates, applies trie-style candidate rectification, and fuses the symbolic residual back into the visual logits.
 
-![DNS-Adapter overview](figures/dns_adapter_overview.pdf)
+![DNS-Adapter overview](figures/dns_adapter_overview.png)
 
-[Case study](figures/dns_adapter_case_study.pdf) | [Symbolic reasoning](figures/dns_adapter_symbolic_reasoning.pdf) | [Trie rectification](figures/dns_adapter_trie.pdf)
+[Case study](figures/dns_adapter_case_study.png) | [Symbolic reasoning](figures/dns_adapter_symbolic_reasoning.png) | [Trie rectification](figures/dns_adapter_trie.png)
 
 ## Repository
 
