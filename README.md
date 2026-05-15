@@ -76,7 +76,7 @@ The repository is organized around the DNS-Adapter pipeline: dataset preparation
 
 - `PROJECT_TREE.md`: concise project tree. It gives a quick structural overview of all important files and folders.
 
-Key logic to be fully opened after publication: The `dns_adapter` file and `scripts· file.
+Key logic to be fully opened after publication: The `dns_adapter` file and `scripts` file.
 
 ## Setup
 
