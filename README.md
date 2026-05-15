@@ -42,16 +42,41 @@ DNS-Adapter first maps query images to anonymous candidate logits through generi
 
 ## Repository
 
-- `main.py`: experiment entry point; preserves dataset loading, feature caching, support sampling, and closed-form visual mapping.
-- `dns_adapter/visual_projection.py`: public vocabulary-free visual projection.
-- `dns_adapter/knowledge_graph.py`: public local knowledge-graph scaffold.
-- `dns_adapter/prompts.py`: public DNS-Adapter prompt templates and output parsing.
-- `dns_adapter/trie.py`: public candidate trie interface.
-- `dns_adapter/symbolic_reasoning.py`: public symbolic reasoning interface with a deterministic fallback.
-- `dns_adapter/unreleased.py`: publication-pending placeholders for the final LLM scoring, calibration, trie-constrained decoding, and retrieval policies.
-- `PROJECT_TREE.md`: concise project tree.
+The repository is organized around the DNS-Adapter pipeline: dataset preparation, vocabulary-free visual projection, uncertainty-aware symbolic reasoning, and result reproduction.
 
-Key logic to be fully opened after publication: The whole `dns_adapter` file and `scripts file`.
+- `main.py`: main experiment entry point. It keeps the original data-processing path, including dataset loading, feature caching, support-set sampling, generic-anchor similarity computation, and closed-form visual mapping. It then calls the DNS-Adapter modules for entropy-based routing, symbolic correction, and residual fusion.
+
+- `dns_adapter/`: core DNS-Adapter package. This folder contains the public modular implementation of the method described in the paper. The files are separated by function so that the visual branch, knowledge branch, prompt branch, constrained rectification, and fusion logic can be inspected independently.
+
+- `dns_adapter/visual_projection.py`: vocabulary-free visual projection module. It fits the closed-form mapping from generic-anchor similarities to anonymous support labels and computes visual logits for query images. This is the preserved visual backbone of the project.
+
+- `dns_adapter/fusion.py`: uncertainty-weighted residual fusion module. It implements the routing weight used to decide how strongly symbolic evidence should modify visual logits.
+
+- `dns_adapter/config.py`: DNS-Adapter runtime configuration and dataset-domain profiles. It stores default thresholds, top-k settings, symbolic temperature, and concise domain descriptions used by the prompt builder.
+
+- `dns_adapter/knowledge_graph.py`: public local knowledge-graph scaffold. It provides the interface for constructing candidate-level external knowledge and retrieving local subgraphs for ambiguous samples.
+
+- `dns_adapter/prompts.py`: DNS-Adapter prompt construction and LLM output parsing. It builds image-description and candidate-restricted reasoning prompts, then parses symbolic scores from JSON responses.
+
+- `dns_adapter/trie.py`: candidate trie interface. It represents the trie-constrained rectification idea from the paper and keeps symbolic outputs inside the valid top-k candidate space.
+
+- `dns_adapter/symbolic_reasoning.py`: symbolic reasoning controller. It selects routed samples, retrieves candidate evidence, builds symbolic scores, and returns a residual correction vector. The public version includes a deterministic fallback so the repository remains runnable without private LLM logic.
+
+- `dns_adapter/unreleased.py`: publication-pending placeholders. This file explicitly marks the final paper-specific LLM scoring, calibration, trie-constrained decoding, and external-knowledge retrieval policies that will be released after publication.
+
+- `datasets/`: dataset wrappers and split loaders. This folder is retained from the original experiment code so DNS-Adapter can use the same benchmarks, split files, class-index labels, and dataloader behavior.
+
+- `scripts/`: convenience scripts for reproducing multi-dataset runs. The script names have been updated to DNS-Adapter and call `main.py` with ImageNet-text or WordNet generic anchors.
+
+- `figures/`: README and paper illustration assets. It contains DNS-Adapter figures copied from the paper package, including the overview, symbolic reasoning branch, trie rectification, and case study.
+
+- `auto_generate_prompt.py`: optional helper for generating or printing domain prompt profiles. It reads API keys only from environment variables and can also run in offline mode.
+
+- `DATASETS.md`: dataset installation and layout guide. It explains the expected root directory structure and notes how DNS-Adapter uses class indices while avoiding target textual anchors.
+
+- `PROJECT_TREE.md`: concise project tree. It gives a quick structural overview of all important files and folders.
+
+Key logic to be fully opened after publication: The `dns_adapter` file and `scripts· file.
 
 ## Setup
 
